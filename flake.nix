@@ -50,27 +50,25 @@
       };
     in
     {
-      nixosConfigurations.jasi = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs;
+      nixosConfigurations = {
+        jasi-vm = nixpkgs.lib.nixosSystem {
+          inherit system pkgs;
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            ./host/vm/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.jasi = import ./home.nix;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+              };
+            }
+          ];
         };
-        modules = [
-          home-manager.nixosModule
-          # Todo
-          # ./host/configuration.nix
-        ];
-      };
-
-      homeConfigurations.jasi = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {
-          inherit inputs;
-        };
-
-        modules = [
-          nixvim.homeManagerModules.nixvim
-          ./home/home.nix
-        ];
       };
     };
 }
