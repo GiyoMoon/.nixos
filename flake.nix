@@ -51,24 +51,28 @@
     in
     {
       nixosConfigurations = {
-        jasi-vm = nixpkgs.lib.nixosSystem {
+        # Virtual NixOS Machine as a playground
+        vm = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
           specialArgs = {
             inherit inputs;
           };
           modules = [
-            ./host/vm/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.jasi = import ./home.nix;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-              };
-            }
+            ./hosts/vm/configuration.nix
           ];
         };
+      };
+
+      homeConfigurations.jasi = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = {
+          inherit inputs;
+        };
+
+        modules = [
+          nixvim.homeManagerModules.nixvim
+          ./home
+        ];
       };
     };
 }

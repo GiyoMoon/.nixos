@@ -4,5 +4,5 @@
     ../shared.nix
   ];
 
-  networking.hostname = "jasi-vm";
+  networking.hostName = "vm";
 }
