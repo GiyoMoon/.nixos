@@ -19,8 +19,8 @@
     };
     defaultUserShell = pkgs.fish;
   };
+  programs.fish.enable = true;
 
-  sound.enable = true;
   services = {
     pipewire = {
       enable = true;
