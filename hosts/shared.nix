@@ -5,7 +5,7 @@
     efi.canTouchEfiVariables = true;
   };
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   time.timeZone = "Europe/Zurich";
   i18n.defaultLocale = "en_US.UTF-8";
