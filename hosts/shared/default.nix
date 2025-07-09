@@ -5,8 +5,6 @@
     efi.canTouchEfiVariables = true;
   };
 
-  hardware.graphics.enable = true;
-
   time.timeZone = "Europe/Zurich";
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -16,17 +14,31 @@
       extraGroups = [
         "wheel"
       ];
+      shell = pkgs.fish;
     };
-    defaultUserShell = pkgs.fish;
   };
-  programs.fish.enable = true;
+
+  networking = {
+    hostName = "jasi";
+    networkmanager.enable = true;
+  };
 
   services = {
     pipewire = {
       enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
       pulse.enable = true;
     };
     openssh.enable = true;
+    gvfs.enable = true;
+
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+      package = pkgs.kdePackages.ssdm;
+      theme = "catppuccin-mocha";
+    };
   };
 
   fonts = {
@@ -44,6 +56,16 @@
 
   environment = {
     shells = with pkgs; [ fish ];
+    sessionVariables = rec {
+      # TERMINAL = "kitty";
+      EDITOR = "nvim";
+      XDG_BIN_HOME = "$HOME/.local/bin";
+      PATH = [
+        "${XDG_BIN_HOME}"
+      ];
+      # Electron apps, please use wayland
+      NIXOS_OZONE_WL = "1";
+    };
     # environment.systemPackages = with pkgs; [
     # ];
   };
@@ -70,5 +92,15 @@
     optimise.automatic = true;
   };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
+
+  programs = {
+    fish.enable = true;
+
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+    xwayland.enable = true;
+  };
 }
