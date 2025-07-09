@@ -18,5 +18,6 @@
     ./programs/nixvim
     ./programs/shell.nix
     ./programs/starship.nix
+    ./programs/wayland.nix
   ];
 }
