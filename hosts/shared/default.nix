@@ -19,7 +19,6 @@
   };
 
   networking = {
-    hostName = "jasi";
     networkmanager.enable = true;
   };
 
