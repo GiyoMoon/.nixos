@@ -16,6 +16,7 @@
     ./packages.nix
     ./programs/bat.nix
     ./programs/eza.nix
+    ./programs/firefox.nix
     ./programs/git.nix
     ./programs/hyprland
     ./programs/kitty.nix

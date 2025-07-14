@@ -65,8 +65,6 @@
       # Electron apps, please use wayland
       NIXOS_OZONE_WL = "1";
     };
-    # environment.systemPackages = with pkgs; [
-    # ];
   };
 
   security.polkit.enable = true;
