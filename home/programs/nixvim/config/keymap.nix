@@ -197,7 +197,12 @@
       {
         mode = "n";
         key = "<leader>[";
-        action.__raw = "vim.diagnostic.goto_prev";
+        action.__raw = # lua
+          ''
+            function()
+              vim.diagnostic.jump({count=-1, float=true})
+            end
+          '';
         options = {
           desc = "Go to previous [D]iagnostic message";
         };
@@ -205,7 +210,12 @@
       {
         mode = "n";
         key = "<leader>]";
-        action.__raw = "vim.diagnostic.goto_next";
+        action.__raw = # lua
+          ''
+            function()
+              vim.diagnostic.jump({count=1, float=true})
+            end
+          '';
         options = {
           desc = "Go to next [D]iagnostic message";
         };
@@ -240,15 +250,6 @@
         action = ":DiffviewClose<CR>";
         options = {
           desc = "Close diffview";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>p";
-        action = ":lua require('otter').activate()<CR>";
-        options = {
-          desc = "Otter";
-          silent = true;
         };
       }
     ];
