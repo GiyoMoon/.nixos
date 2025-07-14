@@ -36,14 +36,10 @@
 
       # Disable fish greeting
       set -g fish_greeting ""
-      set -Ux ANDROID_HOME /opt/homebrew/share/android-commandlinetools
 
       # bin paths
       fish_add_path $HOME/.nix-profile/bin
       fish_add_path /nix/var/nix/profiles/default/bin
-      fish_add_path /opt/homebrew/bin
-      fish_add_path /opt/homebrew/share/android-commandlinetools/platform-tools
-      fish_add_path /opt/homebrew/share/android-commandlinetools/emulator
       fish_add_path $HOME/.cargo/bin
       fish_add_path $HOME/.config/composer/vendor/bin
     '';
