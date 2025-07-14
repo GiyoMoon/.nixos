@@ -93,13 +93,10 @@
 
   system.stateVersion = "24.11";
 
-  programs = {
-    fish.enable = true;
-
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
+  programs.fish.enable = true;
+  programs.xwayland.enable = true;
+  programs.hyprland = {
+    enable = true;
     xwayland.enable = true;
   };
 }

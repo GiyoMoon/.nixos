@@ -12,12 +12,15 @@
   programs.home-manager.enable = true;
 
   imports = [
+    ./fonts.nix
     ./packages.nix
+    ./programs/bat.nix
+    ./programs/eza.nix
     ./programs/git.nix
+    ./programs/hyprland
     ./programs/kitty.nix
     ./programs/nixvim
     ./programs/shell.nix
     ./programs/starship.nix
-    ./programs/wayland.nix
   ];
 }
